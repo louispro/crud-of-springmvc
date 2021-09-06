@@ -1,5 +1,10 @@
 package com.louis.crud.bean;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
 /**
  * @赖小燚
  * @www.louis_lai.com
@@ -7,9 +12,13 @@ package com.louis.crud.bean;
 public class Employee {
 
     private Integer employeeId;
+    @NotEmpty(message="不能为空")
+    @Length(min=0,max=4,message = "长度必须在0-4")
     private String name;
+    @Email
     private String email;
     //1表示男性，0表示女性
+    @Range(min=0,max=1)
     private Integer gender;
     private Integer departmentId;
     private String departmentName;

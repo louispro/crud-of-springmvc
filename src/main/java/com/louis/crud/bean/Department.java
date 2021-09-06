@@ -1,4 +1,4 @@
-package com.louis.bean;
+package com.louis.crud.bean;
 
 /**
  * @赖小燚
@@ -40,4 +40,5 @@ public class Department {
                 ", departmentName='" + departmentName + '\'' +
                 '}';
     }
+
 }

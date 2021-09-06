@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>添加员工</title>
@@ -35,7 +36,7 @@
         pageContext.setAttribute("ctp",request.getContextPath());
 %>
 <form:form action="${ctp}/emp" method="post" modelAttribute="employee">
-        ID: <form:input path="employeeId"/><br/>
+        ID: <form:input path="employeeId"/><from:errors path="employeeId"/> <br/>
         姓名: <form:input path="name"/><br/>
         邮箱: <form:input path="email"/><br/>
         性别: 男<form:radiobutton path="gender" value="1"/>  女<form:radiobutton path="gender" value="0"/><br/>

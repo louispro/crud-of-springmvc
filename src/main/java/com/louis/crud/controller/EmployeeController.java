@@ -4,12 +4,17 @@ import com.louis.crud.bean.Department;
 import com.louis.crud.bean.Employee;
 import com.louis.crud.dao.DepartmentDao;
 import com.louis.crud.dao.EmployeeDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @赖小燚
@@ -57,9 +62,25 @@ public class EmployeeController {
      * @return
      */
     @RequestMapping(value = "/emp",method = RequestMethod.POST)
-    public String addEmployee(Employee employee){
-        employeeDao.saveEmployee(employee);
-        return "redirect:/employees";
+    public String addEmployee(@Valid Employee employee, BindingResult result,Model model){
+        //获取校验结果
+        boolean hasErrors = result.hasErrors();
+        Map<String,Object> errorInfos = new HashMap<>();
+        if(hasErrors == true){
+            //校验失败
+            System.out.println("数据不合法");
+            for (FieldError fieldError : result.getFieldErrors()) {
+                String errorField = fieldError.getField();  //获取错误字段
+                String errorInfo = fieldError.getDefaultMessage(); //获取错误信息
+                errorInfos.put(errorField,errorInfo);
+            }
+            model.addAttribute("errorInfos",errorInfos);
+            return "addEmployee";
+        }else {
+            System.out.println("数据合法");
+            employeeDao.saveEmployee(employee);
+            return "redirect:/employees";
+        }
     }
 
     /**
