@@ -1,4 +1,4 @@
-package com.louis.bean;
+package com.louis.crud.bean;
 
 /**
  * @赖小燚
@@ -14,6 +14,9 @@ public class Employee {
     private Integer departmentId;
     private String departmentName;
 
+    public Employee() {
+    }
+
     public Employee(Integer employeeId, String name, String email, Integer gender, Integer departmentId, String departmentName) {
         this.employeeId = employeeId;
         this.name = name;
@@ -21,9 +24,6 @@ public class Employee {
         this.gender = gender;
         this.departmentId = departmentId;
         this.departmentName = departmentName;
-    }
-
-    public Employee() {
     }
 
     public Integer getEmployeeId() {

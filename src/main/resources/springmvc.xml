@@ -17,17 +17,19 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <!--配置自定义类型转换器-->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-        <property name="converters">
-            <set>
-                <bean class="com.louis.crud.component.StringToEmployeeConverter"></bean>
-            </set>
-        </property>
+    <!--配置数据库-->
+<!--    <context:property-placeholder location="dbconfig.properties"></context:property-placeholder>-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/springmvc?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=true"></property>
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
     </bean>
-    <!--conversion-service="conversionService"通知springmvc使用自定义类型转换器-->
-    <!--配置下面两行可以访问静态资源和动态资源-->
-    <!--    <mvc:resources mapping="/js/**" location="/js/" />-->
+    <!--jdbcTemplate-->
+    <bean class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+    </bean>
+
     <mvc:default-servlet-handler/>
-    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <mvc:annotation-driven></mvc:annotation-driven>
 </beans>
