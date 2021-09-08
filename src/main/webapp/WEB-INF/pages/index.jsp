@@ -44,6 +44,11 @@
 <form action="employee/${emp.employeeId}" method="post" id="deleteForm">
     <input type="hidden" name="_method" value="DELETE">
 </form>
+<a href="toAjaxPage">前往ajax页面</a><br/>
+<a href="responseEntity">ResponseEntity</a><br/>
+<a href="download">文件下载</a><br/>
+<a href="toUpload">文件上传</a><br/>
+<a href="toFilterPage">拦截页面</a>
 <script type="text/javascript">
     $(function(){
         $(".deleteEmployee").click(function(){
