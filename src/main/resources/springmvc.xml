@@ -51,9 +51,29 @@
             <mvc:mapping path="/filter"/>
             <bean class="com.louis.crud.filter.CostumHandlerInterceptor"></bean>
         </mvc:interceptor>
-
     </mvc:interceptors>
 
+    <!--配置国际化文件-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="login"></property>
+    </bean>
+<!--    &lt;!&ndash;自定义区域解析器 ,id必须为localeResolver&ndash;&gt;-->
+<!--    <bean id="localeResolver" class="com.louis.crud.controller.MyLocaleResolver"></bean>-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
+    </mvc:interceptors>
+
+    <!--配置异常处理-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--key:异常全类名,value是要去的页面视图名-->
+                <prop key="java.lang.NullPointerException">error</prop>
+            </props>
+        </property>
+        <property name="exceptionAttribute" value="ex"></property>
+    </bean>
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 

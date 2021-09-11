@@ -49,6 +49,10 @@
 <a href="download">文件下载</a><br/>
 <a href="toUpload">文件上传</a><br/>
 <a href="toFilterPage">拦截页面</a>
+<a href="toLoginPage">国际化登陆界面</a>
+<a href="error">异常</a>
+<a href="customError?username=Louis">自定义异常</a>
+<a href="simpleError">simpleMapping异常处理</a>
 <script type="text/javascript">
     $(function(){
         $(".deleteEmployee").click(function(){
